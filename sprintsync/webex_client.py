@@ -10,7 +10,8 @@ MESSAGES_URL = "https://webexapis.com/v1/messages"
 TIMEOUT = 10
 
 ERROR_MESSAGES = {
-    401: "Webex rejected the bot token (401). Check WEBEX_BOT_TOKEN in .env.",
+    401: "Webex rejected the bot token (401). "
+         "Check WEBEX_BOT_TOKEN in .env or Jenkins Credentials.",
     404: "Webex room not found (404). Check WEBEX_ROOM_ID and that the bot is in the space.",
     429: "Webex rate limit reached (429). Wait a moment and try again.",
 }

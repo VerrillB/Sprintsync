@@ -49,8 +49,8 @@ def main(argv=None):
     """Post the build notice. Always return 0 so a Webex problem never changes the build result."""
     args = parse_args(argv)
     load_dotenv()
-    token = os.getenv("WEBEX_BOT_TOKEN")
-    room = os.getenv("WEBEX_ROOM_ID")
+    token = os.getenv("WEBEX_BOT_TOKEN", "").strip()
+    room = os.getenv("WEBEX_ROOM_ID", "").strip()
     if not token or not room:
         print("Warning: WEBEX_BOT_TOKEN or WEBEX_ROOM_ID is not set. Build notice not sent.")
         return 0
