@@ -30,13 +30,13 @@ class ConfigError(Exception):
 def load_config(env_file=".env"):
     """Return a dict of settings. Raise ConfigError if a required one is missing."""
     load_dotenv(env_file)
-    missing = [name for name in REQUIRED_VARS if not os.getenv(name)]
+    missing = [name for name in REQUIRED_VARS if not os.getenv(name, "").strip()]
     if missing:
         raise ConfigError(
             "Missing settings: " + ", ".join(missing)
             + ". Copy .env.example to .env and fill them in."
         )
-    config = {name: os.getenv(name) for name in REQUIRED_VARS}
+    config = {name: os.getenv(name).strip() for name in REQUIRED_VARS}
     for name, default in OPTIONAL_VARS.items():
-        config[name] = os.getenv(name, default)
+        config[name] = os.getenv(name, default).strip()
     return config

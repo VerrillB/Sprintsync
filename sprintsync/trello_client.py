@@ -11,8 +11,9 @@ TIMEOUT = 10
 SKIP_LISTS = ["Members"]
 
 ERROR_MESSAGES = {
-    401: "Trello rejected the key or token (401). Check TRELLO_KEY and TRELLO_TOKEN in .env.",
-    404: "Trello board not found (404). Check TRELLO_BOARD_ID in .env.",
+    401: "Trello rejected the key or token (401). "
+         "Check TRELLO_KEY and TRELLO_TOKEN in .env or Jenkins Credentials.",
+    404: "Trello board not found (404). Check TRELLO_BOARD_ID in .env or Jenkins Credentials.",
     429: "Trello rate limit reached (429). Wait a moment and try again.",
 }
 

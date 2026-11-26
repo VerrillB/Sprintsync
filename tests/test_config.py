@@ -27,3 +27,19 @@ def test_load_config_missing_value_raises(monkeypatch):
     with pytest.raises(config.ConfigError) as error:
         config.load_config(env_file="does-not-exist.env")
     assert "TRELLO_KEY" in str(error.value)
+
+def test_load_config_strips_spaces_and_newlines(monkeypatch):
+    for name, value in ALL_SET.items():
+        monkeypatch.setenv(name, value)
+    monkeypatch.setenv("TRELLO_TOKEN", " t\n")
+    result = config.load_config(env_file="does-not-exist.env")
+    assert result["TRELLO_TOKEN"] == "t"
+
+
+def test_load_config_blank_value_counts_as_missing(monkeypatch):
+    for name, value in ALL_SET.items():
+        monkeypatch.setenv(name, value)
+    monkeypatch.setenv("WEBEX_ROOM_ID", "   ")
+    with pytest.raises(config.ConfigError) as error:
+        config.load_config(env_file="does-not-exist.env")
+    assert "WEBEX_ROOM_ID" in str(error.value)
