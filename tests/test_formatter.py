@@ -86,4 +86,4 @@ def test_build_notice_success():
 
 def test_build_notice_failure():
     message = formatter.build_build_notice("FAILURE", "Reymond Pascual", "abc1234def")
-    assert "BROKEN" in message
+    assert "FAILED" in message
